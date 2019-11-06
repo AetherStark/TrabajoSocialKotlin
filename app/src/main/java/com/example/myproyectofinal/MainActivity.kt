@@ -23,6 +23,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewManager: RecyclerView.LayoutManager
     val escuelasList: List<Escuelas> = ArrayList()
 
+    //agrregue comentario
+    
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
