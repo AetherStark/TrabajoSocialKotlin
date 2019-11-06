@@ -5,6 +5,7 @@ class Escuelas (idescuela: String, nombre: String, direccion: String, telefono: 
     var nomEst: String=""
     var carrera: String =""
     var edad: Int = 0
+    var idt: String =""
 
     init{
         this.noCtrl = noControl
