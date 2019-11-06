@@ -1,14 +1,14 @@
 package com.example.myproyectofinal.Propiedades
 
 class Escuelas (idescuela: String, nombre: String, direccion: String, telefono: String, idtrabajador: String) {
-    var noCtrl: String = ""
-    var nomEst: String=""
-    var carrera: String =""
-    var edad: Int = 0
+    var ide: String = ""
+    var nomE: String=""
+    var dir: String =""
+    var tel: String = ""
     var idt: String =""
 
     init{
-        this.noCtrl = noControl
+        this. = noControl
         this.nomEst = nomEst
         this.carrera = carrera
         this.edad = edadEst
