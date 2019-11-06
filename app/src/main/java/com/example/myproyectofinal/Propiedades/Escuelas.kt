@@ -8,10 +8,11 @@ class Escuelas (idescuela: String, nombre: String, direccion: String, telefono: 
     var idt: String =""
 
     init{
-        this. = noControl
-        this.nomEst = nomEst
-        this.carrera = carrera
-        this.edad = edadEst
+        this.ide = idescuela
+        this.nomE = nombre
+        this.dir = direccion
+        this.tel = telefono
+        this.idt = idtrabajador
     }
 
 }

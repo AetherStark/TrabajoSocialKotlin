@@ -18,13 +18,13 @@
             tools:srcCompat="@drawable/escuela" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tvNomE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nombre de Escuela" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/tvTel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Telefono de la escuela" />
