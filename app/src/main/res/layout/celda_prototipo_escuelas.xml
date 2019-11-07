@@ -15,18 +15,18 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:srcCompat="@drawable/escuela" />
+            app:srcCompat="@drawable/escuela" />
 
         <TextView
             android:id="@+id/tvNomE"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="Nombre de Escuela" />
 
         <TextView
             android:id="@+id/tvTel"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="Telefono de la escuela" />
     </LinearLayout>
 

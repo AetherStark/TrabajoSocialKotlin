@@ -3,6 +3,6 @@ package com.example.myproyectofinal
 class Adress {
 
     companion object{
-        val IP = "http://192.168.1.138/"
+        val IP = "http://192.168.1.113/"
     }
 }

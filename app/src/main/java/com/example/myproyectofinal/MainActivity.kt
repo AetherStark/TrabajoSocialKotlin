@@ -19,84 +19,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewAdapter: AdaptadorEscuelas
-    private lateinit var viewManager: RecyclerView.LayoutManager
-    val escuelasList: List<Escuelas> = ArrayList()
-
-    //agrregue comentario
-    
-
+      //agrregue comentario
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewManager = LinearLayoutManager(this)
-        viewAdapter = AdaptadorEscuelas(escuelasList, this, { escuel: Escuelas -> onItemClickListener(escuel)})
-
-        rv_escu_list.apply {
-            setHasFixedSize(true)
-            layoutManager = viewManager
-            adapter = viewAdapter
-            addItemDecoration(DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL))
-        }
-
-
-        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
-            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
-                return false
-            }
-
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {
-                val position = viewHolder.adapterPosition
-                val estud= viewAdapter.getTasks()
-                val admin = adminBD(baseContext)
-                if (admin.Ejecuta("DELETE FROM Estudiante WHERE noControl=" + estud[position].noCtrl) == 1){
-                    retrieveEstudiantes()
-                }
-            }
-        }).attachToRecyclerView(rv_escu_list)
-    }
-
-    // Evento clic cuando damos clic en un elemento del Recyclerview
-    private fun onItemClickListener(Estud: estudiante) {
-        Toast.makeText(this, "Clicked item" + Estud.nomEst, Toast.LENGTH_LONG).show()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        retrieveEstudiantes()
-    }
-
-    private fun retrieveEstudiantes() {
-        val estudiantex = getEstudiantes()
-        viewAdapter.setTask(estudiantex!!)
-    }
-
-    fun getEstudiantes(): MutableList<estudiante>{
-        var estudiantes:MutableList<estudiante> = ArrayList()
-        val admin = adminBD(this)
-
-        //                                          0       1       2      3
-        val tupla = admin.Consulta("SELECT noControl,nomEst,carrera,edadEst FROM Estudiante ORDER BY nomEst")
-        while (tupla!!.moveToNext()) {
-            val no = tupla.getString(0)
-            val nom = tupla.getString(1)
-            val car = tupla.getString(2)
-            val eda = tupla.getInt(3)
-
-            estudiantes.add(estudiante(no,nom,car,eda))
-        }
-        tupla.close()
-        admin.close()
-        return estudiantes
-
-
-
-
-
-    getAllTrabajadores()
+        getAllTrabajadores()
 
         val actividad= Intent(this,ActivityLogin::class.java)
         startActivity(actividad)

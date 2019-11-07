@@ -17,6 +17,7 @@ class ActivityLogin : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        getEscuelas()
 
     }
     fun Cambio(v:View){
@@ -54,8 +55,8 @@ class ActivityLogin : AppCompatActivity() {
                     correo2=cur.getString(2)
                     contra2=cur.getString(3)
                     if (correo==correo2&&contra1==contra2){
-                        getEscuelas()
-                        val actividad= Intent(this,Borrame::class.java)
+
+                        val actividad= Intent(this,ActivityRecyclerEscuelas::class.java)
                         startActivity(actividad)
                     }else{
                         Toast.makeText(this, "DATOS INCORRECTOS", Toast.LENGTH_LONG).show();
