@@ -1,16 +1,23 @@
 package com.example.myproyectofinal
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myproyectofinal.Propiedades.Escuelas
 import kotlinx.android.synthetic.main.celda_prototipo_escuelas.view.*
 
 class AdaptadorEscuelas (private var mListaEscuelas:List<Escuelas>,
                          private val mContext: Context, private val clickListener: (Escuelas) -> Unit)
+
 : RecyclerView.Adapter<AdaptadorEscuelas.EscuelasViewHolder>(){
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EscuelasViewHolder {
         val layoutInflater = LayoutInflater.from(mContext)
@@ -26,6 +33,9 @@ class AdaptadorEscuelas (private var mListaEscuelas:List<Escuelas>,
      */
     override fun onBindViewHolder(holder: EscuelasViewHolder, position: Int) {
         holder.bind(mListaEscuelas[position], mContext, clickListener)
+
+
+
     }
 
     /**

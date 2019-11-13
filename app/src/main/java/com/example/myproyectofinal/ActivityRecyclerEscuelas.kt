@@ -1,5 +1,6 @@
 package com.example.myproyectofinal
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -7,8 +8,12 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.example.myproyectofinal.BaseDatos.adminBD
 import com.example.myproyectofinal.Propiedades.Escuelas
+import com.example.myproyectofinal.Volley.VolleySingleton
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_recycler_escuelas.*
 
@@ -24,7 +29,7 @@ class ActivityRecyclerEscuelas : AppCompatActivity() {
 
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = AdaptadorEscuelas(escuelasList, this, { escuel: Escuelas -> onItemClickListener(escuel)})
+        viewAdapter = AdaptadorEscuelas(escuelasList, this, {escuel: Escuelas -> onItemClickListener(escuel)})
 
         rv_escu_list.apply {
             setHasFixedSize(true)
@@ -52,7 +57,12 @@ class ActivityRecyclerEscuelas : AppCompatActivity() {
 
     // Evento clic cuando damos clic en un elemento del Recyclerview
     private fun onItemClickListener(Escuel: Escuelas) {
-        Toast.makeText(this, "Clicked item" + Escuel.nomE, Toast.LENGTH_LONG).show()
+        getAlumnosWS()
+        Toast.makeText(this, "Abriendo Escuela: " + Escuel.nomE, Toast.LENGTH_LONG).show()
+        var NumEscuela = Escuel.ide
+       // Toast.makeText(this, "LA escuela es la numero " + NumEscuela, Toast.LENGTH_SHORT).show();
+        val actividad= Intent(this,Borrame::class.java)
+        startActivity(actividad)
     }
 
     override fun onResume() {
@@ -61,11 +71,11 @@ class ActivityRecyclerEscuelas : AppCompatActivity() {
     }
 
     private fun retrieveEstudiantes() {
-        val estudiantex = getEstudiantes()
+        val estudiantex = getEscuelas()
         viewAdapter.setTask(estudiantex!!)
     }
 
-    fun getEstudiantes(): MutableList<Escuelas>{
+    fun getEscuelas(): MutableList<Escuelas>{
         var escuel:MutableList<Escuelas> = ArrayList()
         val admin = adminBD(this)
 
@@ -83,5 +93,36 @@ class ActivityRecyclerEscuelas : AppCompatActivity() {
         tupla.close()
         admin.close()
         return escuel
+    }
+
+    fun getAlumnosWS(){
+        val wsURL = Adress.IP +"WSProyFinal/getAlumnos.php"
+        val admin = adminBD(this)
+        admin.Ejecuta("DELETE FROM Alumnos")
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.POST,wsURL,null,
+            Response.Listener { response ->
+                val succ= response["success"]
+                val msg = response["message"]
+                val trabajadoresJson = response.getJSONArray("alumnos")
+                for(i in 0 until trabajadoresJson.length()){
+                    val ida = trabajadoresJson.getJSONObject(i).getString("idalumno")
+                    val nom = trabajadoresJson.getJSONObject(i).getString("nombre")
+                    val eda = trabajadoresJson.getJSONObject(i).getString("edad")
+                    val grad = trabajadoresJson.getJSONObject(i).getString("grado")
+                    val ide = trabajadoresJson.getJSONObject(i).getString("idescuela")
+                    val sentencia = "Insert into Alumnos(idalumno,nombre,edad,grado,idescuela) values(${ida},'${nom}', '${eda}','${grad}','${ide}')"
+                    var res =admin.Ejecuta(sentencia)
+                    Toast.makeText(this, "Informacion Cargada: "+ res, Toast.LENGTH_LONG).show();
+
+
+                }
+            },
+            Response.ErrorListener { error ->
+                Toast.makeText(this, "Error getAlumnos: ${error.message}", Toast.LENGTH_LONG).show();
+            }
+        )
+        VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
+
     }
 }
