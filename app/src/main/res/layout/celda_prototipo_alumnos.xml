@@ -22,7 +22,7 @@
             app:srcCompat="@drawable/alumno" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/NombA"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="centerCrop"
@@ -30,7 +30,7 @@
              />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/Grado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="centerCrop"

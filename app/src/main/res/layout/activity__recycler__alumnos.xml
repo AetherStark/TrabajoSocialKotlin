@@ -7,6 +7,7 @@
     tools:context=".Activity_Recycler_Alumnos">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_alum_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="154dp"

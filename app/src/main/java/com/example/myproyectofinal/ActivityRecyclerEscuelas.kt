@@ -26,6 +26,7 @@ class ActivityRecyclerEscuelas : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recycler_escuelas)
+        getAlumnosWS()
 
 
         viewManager = LinearLayoutManager(this)
@@ -57,11 +58,13 @@ class ActivityRecyclerEscuelas : AppCompatActivity() {
 
     // Evento clic cuando damos clic en un elemento del Recyclerview
     private fun onItemClickListener(Escuel: Escuelas) {
-        getAlumnosWS()
+
         Toast.makeText(this, "Abriendo Escuela: " + Escuel.nomE, Toast.LENGTH_LONG).show()
         var NumEscuela = Escuel.ide
+        val actividad= Intent(this,Activity_Recycler_Alumnos::class.java)
+        actividad.putExtra("IDE",NumEscuela)
        // Toast.makeText(this, "LA escuela es la numero " + NumEscuela, Toast.LENGTH_SHORT).show();
-        val actividad= Intent(this,Borrame::class.java)
+
         startActivity(actividad)
     }
 
@@ -113,7 +116,7 @@ class ActivityRecyclerEscuelas : AppCompatActivity() {
                     val ide = trabajadoresJson.getJSONObject(i).getString("idescuela")
                     val sentencia = "Insert into Alumnos(idalumno,nombre,edad,grado,idescuela) values(${ida},'${nom}', '${eda}','${grad}','${ide}')"
                     var res =admin.Ejecuta(sentencia)
-                    Toast.makeText(this, "Informacion Cargada: "+ res, Toast.LENGTH_LONG).show();
+                 //   Toast.makeText(this, "Informacion Cargada: "+ res, Toast.LENGTH_LONG).show();
 
 
                 }
