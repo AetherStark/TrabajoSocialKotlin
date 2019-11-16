@@ -64,9 +64,11 @@ class Activity_Recycler_Alumnos : AppCompatActivity() {
     private fun onItemClickListener(alum: Alumnos) {
 
         Toast.makeText(this, "Abriendo Alumno: " + alum.nomA, Toast.LENGTH_LONG).show()
-        var NumEscuela = alum.ida
-        // Toast.makeText(this, "LA escuela es la numero " + NumEscuela, Toast.LENGTH_SHORT).show();
-        val actividad= Intent(this,Borrame::class.java)
+        var NumAlumno = alum.ida
+        //Toast.makeText(this, "LA escuela es la numero " + NumAlumno, Toast.LENGTH_SHORT).show();
+        val actividad= Intent(this,ActivityMuestraAlumno::class.java)
+        actividad.putExtra("IDA",NumAlumno)
+
         startActivity(actividad)
     }
 

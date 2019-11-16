@@ -48,14 +48,15 @@ class ActivityRegistro : AppCompatActivity() {
                 val succ = response["success"]
                 val msg = response["message"]
                 Toast.makeText(this, "Success:${succ}  Message:${msg}", Toast.LENGTH_LONG).show();
+                val actividad= Intent(this,MainActivity::class.java)
+                startActivity(actividad)
 
             },
             Response.ErrorListener { error ->
-                val actividad= Intent(this,MainActivity::class.java)
-                startActivity(actividad)
-               // Toast.makeText(this, "${error.message}", Toast.LENGTH_LONG).show();
-                //Log.d("ERROR","${error.message}")
-               // Toast.makeText(this, "API: Error de capa 8 en WS ):", Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(this, "${error.message}", Toast.LENGTH_LONG).show();
+               Log.d("ERROR","${error.message}")
+                Toast.makeText(this, "API: Error de capa 8 en WS ):", Toast.LENGTH_SHORT).show();
             }
         )
         VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
