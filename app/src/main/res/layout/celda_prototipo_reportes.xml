@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+
+            android:layout_width="match_parent"
+            android:layout_height="365dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/reporte" />
+
+        <TextView
+            android:id="@+id/NoReport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Numero de Reporte" />
+
+        <TextView
+            android:id="@+id/FechReport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fecha" />
+
+        <TextView
+            android:id="@+id/MotivoReport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Motivo del Reporte" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

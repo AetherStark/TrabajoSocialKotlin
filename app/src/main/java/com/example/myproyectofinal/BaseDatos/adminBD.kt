@@ -42,9 +42,11 @@ class adminBD(context: Context): SQLiteOpenHelper(context, DATABASE, null, 1) {
             "Create Table Reportes(" +
                     "idreporte integer primary key AUTOINCREMENT," +
                     "fecha text," +
-                    "cuestionario text," +
-                    "idalumno text," +
-                    "idtrabajador integer)"
+                    "motivo_r text," +
+                    "diagnostico text," +
+                    "descripcion text," +
+                    "seguimiento text," +
+                    "idalumno text)"
         )
     }
 

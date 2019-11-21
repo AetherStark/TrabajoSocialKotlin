@@ -6,9 +6,13 @@ import android.os.Bundle
 import android.text.Layout
 import android.widget.Toast
 import androidx.recyclerview.widget.*
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.example.myproyectofinal.BaseDatos.adminBD
 import com.example.myproyectofinal.Propiedades.Alumnos
 import com.example.myproyectofinal.Propiedades.Escuelas
+import com.example.myproyectofinal.Volley.VolleySingleton
 import kotlinx.android.synthetic.main.activity__recycler__alumnos.*
 import kotlinx.android.synthetic.main.activity_recycler_escuelas.*
 
@@ -22,6 +26,7 @@ class Activity_Recycler_Alumnos : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        getReportesWS()
 
         var Actividad = intent
         if (Actividad != null && Actividad.hasExtra("IDE")){
@@ -100,5 +105,39 @@ class Activity_Recycler_Alumnos : AppCompatActivity() {
         tupla.close()
         admin.close()
         return alum
+    }
+
+    fun getReportesWS(){
+        val wsURL = Adress.IP +"WSProyFinal/getReportes.php"
+        val admin = adminBD(this)
+        admin.Ejecuta("DELETE FROM Reportes")
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.POST,wsURL,null,
+            Response.Listener { response ->
+                val succ= response["success"]
+                val msg = response["message"]
+                val trabajadoresJson = response.getJSONArray("reportes")
+                for(i in 0 until trabajadoresJson.length()){
+                    val idr = trabajadoresJson.getJSONObject(i).getString("idreporte")
+                    val fech = trabajadoresJson.getJSONObject(i).getString("fecha")
+                    val motivo = trabajadoresJson.getJSONObject(i).getString("motivo_r")
+                    val diag = trabajadoresJson.getJSONObject(i).getString("diagnostico")
+                    val descrip = trabajadoresJson.getJSONObject(i).getString("descripcion")
+                    val segui = trabajadoresJson.getJSONObject(i).getString("seguimiento")
+                    val ida = trabajadoresJson.getJSONObject(i).getString("idalumno")
+                    val sentencia = "Insert into Reportes(idreporte,fecha,motivo_r,diagnostico,descripcion,seguimiento,idalumno)" +
+                            "values(${idr},'${fech}','${motivo}','${diag}','${descrip}','${segui}','${ida}')"
+                    var res =admin.Ejecuta(sentencia)
+                       Toast.makeText(this, "Informacion Cargada: "+ res, Toast.LENGTH_LONG).show();
+
+
+                }
+            },
+            Response.ErrorListener { error ->
+                Toast.makeText(this, "Error getReportes: ${error.message}", Toast.LENGTH_LONG).show();
+            }
+        )
+        VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
+
     }
 }

@@ -24,13 +24,14 @@ class ActivityMuestraAlumno : AppCompatActivity() {
 
         fab1.setOnClickListener { view ->
 
-            val actividad= Intent(this,Borrame::class.java)
+            val actividad= Intent(this,Activity_Reportes::class.java)
             startActivity(actividad)
            // Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
              //   .setAction("Action", null).show()
         }
         fab2.setOnClickListener { view ->
-            val actividad= Intent(this,Borrame::class.java)
+            val actividad= Intent(this,Activity_Recycler_Reportes::class.java)
+            actividad.putExtra("IDA",IDA)
             startActivity(actividad)
            // Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
              //   .setAction("Action", null).show()
