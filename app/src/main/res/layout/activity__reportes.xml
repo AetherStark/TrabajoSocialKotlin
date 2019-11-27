@@ -15,10 +15,11 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.415"
         app:srcCompat="@drawable/imaaa" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/etFecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -32,7 +33,21 @@
         app:layout_constraintVertical_bias="0.044" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/etMotivo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="112dp"
+        android:ems="10"
+        android:hint="Motivo del Reporte"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.815" />
+
+    <EditText
+        android:id="@+id/etDiag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="388dp"
@@ -44,22 +59,9 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Motivo del Reporte"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.815" />
-
-    <EditText
-        android:id="@+id/editText7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/etDescrip"
+        android:layout_width="218dp"
+        android:layout_height="92dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="Descripcion"
@@ -71,29 +73,30 @@
         app:layout_constraintVertical_bias="0.426" />
 
     <EditText
-        android:id="@+id/editText8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:id="@+id/etSegui"
+        android:layout_width="215dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="376dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="Seguimiento"
         android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText7" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/boton_redondo"
+        android:onClick="insertaReporte"
         android:text="Ingresar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.894"
+        app:layout_constraintHorizontal_bias="0.91"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.882" />
+        app:layout_constraintVertical_bias="0.953" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

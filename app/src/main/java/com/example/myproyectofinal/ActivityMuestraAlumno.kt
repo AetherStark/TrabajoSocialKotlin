@@ -3,8 +3,13 @@ package com.example.myproyectofinal
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.example.myproyectofinal.BaseDatos.adminBD
 import com.example.myproyectofinal.Propiedades.Alumnos
+import com.example.myproyectofinal.Volley.VolleySingleton
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_muestra_alumno.*
 
@@ -16,6 +21,7 @@ class ActivityMuestraAlumno : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_muestra_alumno)
 
+
         var Actividad = intent
         if (Actividad != null && Actividad.hasExtra("IDA")){
             IDA = Actividad.getStringExtra("IDA")
@@ -25,19 +31,24 @@ class ActivityMuestraAlumno : AppCompatActivity() {
         fab1.setOnClickListener { view ->
 
             val actividad= Intent(this,Activity_Reportes::class.java)
+            actividad.putExtra("IDA",IDA)
+            finish()
             startActivity(actividad)
            // Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
              //   .setAction("Action", null).show()
         }
         fab2.setOnClickListener { view ->
+
             val actividad= Intent(this,Activity_Recycler_Reportes::class.java)
             actividad.putExtra("IDA",IDA)
+            finish()
             startActivity(actividad)
            // Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
              //   .setAction("Action", null).show()
         }
 
         getAlumnos()
+
     }
 
 
@@ -62,4 +73,6 @@ class ActivityMuestraAlumno : AppCompatActivity() {
         admin.close()
         return alum
     }
+
+
 }
