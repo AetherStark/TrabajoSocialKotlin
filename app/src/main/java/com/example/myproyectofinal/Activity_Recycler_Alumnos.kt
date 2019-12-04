@@ -68,7 +68,7 @@ class Activity_Recycler_Alumnos : AppCompatActivity() {
     // Evento clic cuando damos clic en un elemento del Recyclerview
     private fun onItemClickListener(alum: Alumnos) {
 
-        Toast.makeText(this, "Abriendo Alumno: " + alum.nomA, Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Abriendo Alumno: " + alum.nomA, Toast.LENGTH_SHORT).show()
         var NumAlumno = alum.ida
         //Toast.makeText(this, "LA escuela es la numero " + NumAlumno, Toast.LENGTH_SHORT).show();
         val actividad= Intent(this,ActivityMuestraAlumno::class.java)
@@ -128,7 +128,7 @@ class Activity_Recycler_Alumnos : AppCompatActivity() {
                     val sentencia = "Insert into Reportes(idreporte,fecha,motivo_r,diagnostico,descripcion,seguimiento,idalumno)" +
                             "values(${idr},'${fech}','${motivo}','${diag}','${descrip}','${segui}','${ida}')"
                     var res =admin.Ejecuta(sentencia)
-                       Toast.makeText(this, "Informacion Cargada: "+ res, Toast.LENGTH_LONG).show();
+                      // Toast.makeText(this, "Informacion Cargada: "+ res, Toast.LENGTH_LONG).show();
 
 
                 }

@@ -62,13 +62,13 @@ class Activity_Recycler_Reportes : AppCompatActivity() {
     // Evento clic cuando damos clic en un elemento del Recyclerview
     private fun onItemClickListener(repor: Reportes) {
 
-        Toast.makeText(this, "Abriendo Reporte: " + repor.idr, Toast.LENGTH_LONG).show()
-        var NumRepor = repor.ida
-        //Toast.makeText(this, "LA escuela es la numero " + NumAlumno, Toast.LENGTH_SHORT).show();
-        val actividad= Intent(this,ActivityMuestraAlumno::class.java)
-        actividad.putExtra("IDA",NumRepor)
+        //Toast.makeText(this, "Abriendo Reporte: " + repor.idr, Toast.LENGTH_LONG).show()
+        var NumRepor = repor.idr
+        Toast.makeText(this, "El reporte es el numero " + repor.idr, Toast.LENGTH_SHORT).show();
+       // val actividad= Intent(this,ActivityMuestraAlumno::class.java)
+        //actividad.putExtra("IDA",NumRepor)
 
-        startActivity(actividad)
+        //startActivity(actividad)
     }
 
     override fun onResume() {

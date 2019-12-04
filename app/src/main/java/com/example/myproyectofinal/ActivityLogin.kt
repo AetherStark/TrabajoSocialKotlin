@@ -52,11 +52,13 @@ class ActivityLogin : AppCompatActivity() {
             }
             else{
                 if( cur.moveToFirst()) {
+                    val trabajador =cur.getString(1)
                     correo2=cur.getString(2)
                     contra2=cur.getString(3)
                     if (correo==correo2&&contra1==contra2){
 
                         val actividad= Intent(this,ActivityRecyclerEscuelas::class.java)
+                        Toast.makeText(this, "Bienvenido "+trabajador, Toast.LENGTH_SHORT).show();
                         startActivity(actividad)
                     }else{
                         Toast.makeText(this, "DATOS INCORRECTOS", Toast.LENGTH_LONG).show();
@@ -94,7 +96,7 @@ class ActivityLogin : AppCompatActivity() {
                     val idt = escuelasJson.getJSONObject(i).getString("idtrabajador")
                     val sentencia = "Insert into Escuela(idescuela,nombre,direccion,telefono,idtrabajador) values(${ide},'${nom}', '${dir}','${tel}','${idt}')"
                     var res =admin.Ejecuta(sentencia)
-                    Toast.makeText(this, "Escuelas Cargadas: "+ res, Toast.LENGTH_LONG).show();
+                   // Toast.makeText(this, "Escuelas Cargadas: "+ res, Toast.LENGTH_LONG).show();
 
 
                 }

@@ -59,7 +59,7 @@ class ActivityRecyclerEscuelas : AppCompatActivity() {
     // Evento clic cuando damos clic en un elemento del Recyclerview
     private fun onItemClickListener(Escuel: Escuelas) {
 
-        Toast.makeText(this, "Abriendo Escuela: " + Escuel.nomE, Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Abriendo Escuela: " + Escuel.nomE, Toast.LENGTH_SHORT).show()
         var NumEscuela = Escuel.ide
         val actividad= Intent(this,Activity_Recycler_Alumnos::class.java)
         actividad.putExtra("IDE",NumEscuela)

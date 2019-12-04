@@ -96,7 +96,7 @@ class Activity_Reportes : AppCompatActivity() {
                     val sentencia = "Insert into Reportes(idreporte,fecha,motivo_r,diagnostico,descripcion,seguimiento,idalumno)" +
                             "values(${idr},'${fech}','${motivo}','${diag}','${descrip}','${segui}','${ida}')"
                     var res =admin.Ejecuta(sentencia)
-                    Toast.makeText(this, "Informacion Cargada: "+ res, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(this, "Informacion Cargada: "+ res, Toast.LENGTH_LONG).show();
 
 
                 }
